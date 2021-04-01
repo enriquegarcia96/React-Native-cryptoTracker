@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, Text,Image, StyleSheet, Platform } from 'react-native';
+import { View, Text,Image,Pressable, StyleSheet, Platform } from 'react-native';
 import  Colors  from '../../res/colors'
 
 
-const CoinsItem = ({ item }) =>{
+const CoinsItem = ({ item, onPress }) =>{
 
     //--- define cual flecha nos va a devolver ---//
     const getImgArrow = () => {
@@ -15,7 +15,9 @@ const CoinsItem = ({ item }) =>{
     }
 
     return(
-        <View style={styles.container}> 
+
+        <Pressable onPress={ onPress } style={styles.container}> 
+
             <View style={styles.row}>
                 <Text style={styles.symbolText}>{item.symbol}</Text>
                 <Text style={styles.nameText}>{item.name}</Text>
@@ -30,7 +32,7 @@ const CoinsItem = ({ item }) =>{
                 />
             </View>
 
-        </View>
+        </Pressable>
     );
 }
 
@@ -44,7 +46,9 @@ const styles = StyleSheet.create({
         padding: 16,
         borderBottomColor: Colors.zircon,
         borderBottomWidth: 1,
+        paddingLeft: Platform.OS == 'ios' ? 0 : 16,
         marginLeft: Platform.OS == 'ios' ? 16 : 0
+
     },
     row: {
         flexDirection:'row'
