@@ -6,4 +6,4 @@
 
 # instalaciones
 `npm i @react-navigation/bottom-tabs`
-
+`npm i @react-native-community/async-storage`
