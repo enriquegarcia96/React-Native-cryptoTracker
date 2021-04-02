@@ -21,6 +21,10 @@ class CoinDetailScreen extends Component {
         }
     }
 
+
+
+
+
     getSections = ( coin ) =>{
 
         /**
@@ -45,6 +49,10 @@ class CoinDetailScreen extends Component {
         return sections
     }
 
+
+
+
+
     //--- Metodo ---//
     getMarkets = async(coinId) => {
 
@@ -56,6 +64,11 @@ class CoinDetailScreen extends Component {
 
     }
 
+
+
+
+    
+
     componentDidMount(){
         const { coin } = this.props.route.params;
 
@@ -65,6 +78,11 @@ class CoinDetailScreen extends Component {
 
         this.setState({ coin });
     }
+
+
+
+
+
 
 
     render(){

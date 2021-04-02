@@ -3,15 +3,22 @@ import {View, FlatList,Text,ActivityIndicator, Pressable, StyleSheet} from 'reac
 import  Http from '../../libs/http';
 import CoinsItem from './CoinsItem';
 import Colors from '../../res/colors';
+import CoinsSearch from './CoinsSearch';
 
 class CoinsScreen extends Component {
 
   state = {
     coins: [],
+    allCoins: [],
     loading: false
   }
 
-  componentDidMount  = async () =>{
+  componentDidMount  =  () =>{
+    this.getCoins();
+  }
+
+
+  getCoins = async() => {
 
     this.setState({ loading: true })
 
@@ -20,8 +27,13 @@ class CoinsScreen extends Component {
       //console.log("coins: ",coins);
 
     //--- se lo seteo al estado ---//
-    this.setState({ coins: res.data, loading: false })
+    this.setState({ coins: res.data,allCoins: res.data ,loading: false })
+
   }
+
+
+
+
 
   handlePress = (coin) =>{
     //console.log('go to detail', this.props);
@@ -31,11 +43,32 @@ class CoinsScreen extends Component {
     this.props.navigation.navigate('CoinDetail', { coin });
   }
 
+
+
+  
+
+  //--- Buscador del input para encontrar las monedas ---//
+  handleSearch = ( query ) =>{
+
+    const { allCoins } = this.state;
+
+    const coinsFiltered = allCoins.filter( ( coin ) => {
+        return coin.name.toLowerCase().includes(query.toLowerCase()) || 
+        coin.symbol.toLowerCase().includes(query.toLowerCase())
+    } )
+
+    this.setState({ coins: coinsFiltered })
+  }
+
+
+
+
   render() {
     const { coins, loading } = this.state;
 
     return (
       <View style={styles.container}>
+        <CoinsSearch onChange={this.handleSearch} />
         { loading ? 
         <ActivityIndicator 
           style={ styles.loader }      
