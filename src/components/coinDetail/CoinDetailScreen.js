@@ -1,16 +1,82 @@
 import React, {Component} from 'react';
-import {View, Image,Text,SectionList, StyleSheet,FlatList} from 'react-native';
+import {View, Image,Text,SectionList,Pressable, StyleSheet,FlatList,Alert} from 'react-native';
 import Http from '../../libs/http';
 import Colors from '../../res/colors';
 import CoinMarketItem from './CoinMarketItem';
-
+import Storage from '../../libs/storage';
 
 
 class CoinDetailScreen extends Component {
 
+
     state = {
         coin: {},
-        markets: []
+        markets: [],
+        isFavorite: false //sabe si esta o no esta agregado
+    }
+
+    toogleFavorite = ()=>{
+        if (this.state.isFavorite) {
+            this.removeFavorite();
+        }else{
+            this.addFavorite();
+        }
+    }
+
+    addFavorite = async () => {
+        const coin = JSON.stringify( this.state.coin )
+        const key = `favorite-${this.state.coin.id}`
+
+        const stored = await Storage.instance.store(key, coin);
+
+        //console.log('stored', stored)
+
+        if (stored) {
+            this.setState({ isFavorite: true });
+        }
+    }
+
+    removeFavorite = async() =>{
+        Alert.alert('Remove favorite', 'Are you sure?', [{
+            text: 'cancel',
+            onPress: () => {},
+            style: 'cancel'
+            },
+            {
+                text: 'Remove',
+                onPress: async () =>{
+
+                    const key = `favorite-${this.state.coin.id}`;
+
+                    await Storage.instance.remove(key);
+
+                    this.setState({ isFavorite: false })
+                },
+                style: 'destructive'
+            }
+        ])
+        
+
+    }
+    
+    getFavorite = async () =>{
+
+        try {
+            const key = `favorite-${this.state.coin.id}`
+
+            const favStr = await Storage.instance.get(key);
+            //console.log('fav ',favStr);
+
+            if (favStr != null) {
+                this.setState({ isFavorite: true })
+            } else {
+                
+            }
+        
+        } catch (error) {
+            console.log('get favorite error', error);
+        }
+        
     }
 
     getSymbolIcon = ( name ) =>{
@@ -76,7 +142,9 @@ class CoinDetailScreen extends Component {
 
         this.getMarkets(coin.id);
 
-        this.setState({ coin });
+        this.setState({ coin }, () => {
+            this.getFavorite();
+        });
     }
 
 
@@ -87,13 +155,29 @@ class CoinDetailScreen extends Component {
 
     render(){
 
-        const { coin, markets } = this.state;
+        const { coin, markets, isFavorite } = this.state;
 
         return(
             <View style={styles.container}>
                 <View style={styles.subHeader}>
-                    <Image style={styles.iconImg} source={{ uri: this.getSymbolIcon(coin.name) }} />
-                    <Text style={styles.titleText}>{ coin.name }</Text>
+                    <View style={styles.row}>
+                        <Image style={styles.iconImg} source={{ uri: this.getSymbolIcon(coin.name) }} />
+                        <Text style={styles.titleText}>{ coin.name }</Text>
+                    </View>
+
+                    <Pressable 
+                        onPress={this.toogleFavorite}
+
+                        style={[
+                            styles.btnFavorite,
+                            isFavorite ?
+                            styles.btnFavoriteRemove :
+                            styles.btnFavoriteAdd
+                        ]}>
+                        <Text style={styles.btnFavoriteText}>{ isFavorite ? 'Remove favorite' : 'Add favorite'}</Text>
+                    </Pressable>
+
+
                 </View>
 
                 <SectionList 
@@ -132,15 +216,19 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: Colors.charade
     },
+    row: {
+        flexDirection: 'row'
+    },
     subHeader:{
         backgroundColor: 'rgba(0,0,0, 0.1)',
         padding: 16,
-        flexDirection: 'row'
+        flexDirection: 'row',
+        justifyContent:'space-between'
     },
     titleText:{
         fontSize: 16,
         fontWeight: 'bold',
-        color: '#fff',
+        color:  Colors.white,
         marginLeft: 8
     },  
     iconImg: {
@@ -162,21 +250,37 @@ const styles = StyleSheet.create({
         padding: 8
     },
     itemText:{
-        color: '#fff',
+        color:  Colors.white,
         fontSize: 14
     },
     sectionText: {
-        color: '#fff',
+        color:  Colors.white,
         fontSize: 14,
         fontWeight: 'bold'
     },
     marketsTitle:{
-        color: '#fff',
+        color: Colors.white,
         fontSize: 16,
         fontWeight: 'bold',
         marginBottom: 16,
         marginLeft: 16
+    },
+    btnFavorite:{
+        padding: 8,
+        borderRadius: 8,
+
+    },
+    btnFavoriteAdd: {
+        backgroundColor: Colors.picton
+    },
+    btnFavoriteRemove:{
+        backgroundColor: Colors.carmine
+
+    },
+    btnFavoriteText: {
+        color: Colors.white
     }
+
 })
 
 
