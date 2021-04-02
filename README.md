@@ -1,3 +1,4 @@
+
 # Aplicacion de CrytoTracker Elaborada con React Native 
 # Introduccion a React Native, usando una API de Crypto API 
 
@@ -8,7 +9,8 @@
 ![WhatsApp Image 2021-04-02 at 12 18 41 AM (3)](https://user-images.githubusercontent.com/46203192/113387242-28b86180-9349-11eb-9703-7ee9cbf8cb6f.jpeg)
 ![WhatsApp Image 2021-04-02 at 12 18 41 AM (2)](https://user-images.githubusercontent.com/46203192/113387249-2ce47f00-9349-11eb-85a4-e113880f24f9.jpeg)
 ![WhatsApp Image 2021-04-02 at 12 18 41 AM](https://user-images.githubusercontent.com/46203192/113387251-2d7d1580-9349-11eb-9c0c-358eae1ad99a.jpeg)
-
+![WhatsApp Image 2021-04-02 at 12 21 33 AM (1)](https://user-images.githubusercontent.com/46203192/113387616-e2173700-9349-11eb-84fc-157b8a82cfd9.jpeg)
+![WhatsApp Image 2021-04-02 at 12 21 33 AM](https://user-images.githubusercontent.com/46203192/113387636-f0655300-9349-11eb-9be2-90ea6a0308ce.jpeg)
 
 
 
