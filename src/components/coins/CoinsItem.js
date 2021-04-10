@@ -55,24 +55,26 @@ const styles = StyleSheet.create({
     },
     symbolText: {
         color: '#fff',
-        fontWeight: 'bold',
+        //fontWeight: 'bold',
         fontSize: 16,
-        marginRight: 12
+        marginRight: 12,
+        fontFamily: 'DelaGothicOne-Regular'
     },
     nameText: {
         color: '#fff',
-        fontSize: 14,
-        marginRight: 16
-
+        fontSize: 18,
+        marginRight: 16,
+        fontFamily: 'Inconsolata-VariableFont_wdth,wght'
     },
     percentText: {
         color: '#fff',
-        fontSize: 12,
+        fontSize: 14,
         marginRight: 8
     },
     priceText:{
         color: '#fff',
-        fontSize: 14
+        fontSize: 18,
+        fontFamily: 'Inconsolata-VariableFont_wdth,wght'
     },
     imgIcon: {
         width: 22,
