@@ -226,8 +226,8 @@ const styles = StyleSheet.create({
         justifyContent:'space-between'
     },
     titleText:{
-        fontSize: 16,
-        fontWeight: 'bold',
+        fontSize: 19,
+        fontFamily: 'AbrilFatface-Regular',
         color:  Colors.white,
         marginLeft: 8
     },  
@@ -240,7 +240,8 @@ const styles = StyleSheet.create({
     },
     list:{
         maxHeight: 100,
-        paddingLeft: 16
+        paddingLeft: 16,
+        
     },
     sectionHeader: {
         backgroundColor: 'rgba(0,0,0, 0.2)',
@@ -251,17 +252,18 @@ const styles = StyleSheet.create({
     },
     itemText:{
         color:  Colors.white,
-        fontSize: 14
+        fontSize: 16,
+        fontFamily: 'Inconsolata-VariableFont_wdth,wght'
     },
     sectionText: {
         color:  Colors.white,
         fontSize: 14,
-        fontWeight: 'bold'
+        fontFamily: 'DelaGothicOne-Regular'
     },
     marketsTitle:{
         color: Colors.white,
         fontSize: 16,
-        fontWeight: 'bold',
+        fontFamily: 'DelaGothicOne-Regular',
         marginBottom: 16,
         marginLeft: 16
     },
@@ -278,7 +280,8 @@ const styles = StyleSheet.create({
 
     },
     btnFavoriteText: {
-        color: Colors.white
+        color: Colors.white,
+        fontFamily: 'Inconsolata-VariableFont_wdth,wght'
     }
 
 })
