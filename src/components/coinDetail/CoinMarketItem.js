@@ -21,14 +21,18 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         padding: 16,
         marginRight: 8,
-        alignItems: 'center'
+        alignItems: 'center',
+        
     },
     nameText: {
         color: '#fff',
-        fontWeight: 'bold'
+        fontFamily: 'AbrilFatface-Regular'
+        
     },
     priceText:{
-        color: '#fff'
+        color: '#fff',
+        fontFamily: 'Inconsolata-VariableFont_wdth,wght',
+        
     }
 });
 
