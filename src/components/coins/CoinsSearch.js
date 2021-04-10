@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { TextInput, Platform, View, StyleSheet } from  'react-native';
+import { TextInput, Platform, View, StyleSheet, Image } from  'react-native';
 import Colors  from '../../res/colors';
 
 
@@ -25,18 +25,21 @@ class CoinsSearch extends Component {
 
         return(
             <View>
-                <TextInput 
-                    style={[ 
-                        styles.textInput, 
-                        Platform.OS == 'ios' ?
+                <View style={  styles.buscador }>
+                    <Image style={ styles.imgBuscador } source={ require('../../assets/buscador.png') } />
+                    <TextInput 
+                        style={[ 
+                            styles.textInput, 
+                            Platform.OS == 'ios' ?
                             styles.textInputIos :
                             styles.textInputAndroid
-                    ]}
-                    onChangeText={ this.handleText }
-                    value={ query }
-                    placeholder='Search coin'
-                    placeholderTextColor='#fff'
-                />
+                        ]}
+                        onChangeText={ this.handleText }
+                        value={ query }
+                        placeholder='Buscador de Monedas...'
+                        placeholderTextColor='#fff'
+                    />
+                </View>
             </View>
         );
     }
@@ -49,15 +52,27 @@ const styles = StyleSheet.create({
         height: 46,
         backgroundColor: Colors.charade,
         paddingLeft: 16,
-        color: '#fff'
+        paddingRight: 160,
+        color: '#fff',
+        
     },
     textInputAndroid:{
-        borderBottomWidth: 2,
-        borderBottomColor: Colors.zircon
+        borderBottomWidth: 4,
+        borderBottomColor: Colors.zircon,
+        
+        
     },
     textInputIos:{
         margin: 8,
         borderRadius: 8
+    }, 
+    buscador:{
+        flexDirection: 'row',
+    }, 
+    imgBuscador:{
+        marginTop: 13,
+        width: 30,
+        height: 30
     }
 })
 
