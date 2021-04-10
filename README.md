@@ -1,6 +1,6 @@
 
 # Aplicacion de CrytoTracker Elaborada con React Native ⚛️
-# Introduccion a React Native, usando una API de openweathermap
+# Introduccion a React Native, usando una API de Crypto API 
 
 ![image](https://user-images.githubusercontent.com/46203192/113376813-dd458980-932f-11eb-8702-32795f9ee45a.png)
 
